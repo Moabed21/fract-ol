@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   potato.c                                           :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/17 22:44:02 by moabed            #+#    #+#             */
-/*   Updated: 2025/12/27 17:41:06 by moabed           ###   ########.fr       */
+/*   Created: 2025/12/27 16:07:52 by moabed            #+#    #+#             */
+/*   Updated: 2025/12/27 17:18:44 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
-
-int main(void)
-{
-   
-}
+#include "libft/libft.h"
+#include "ft_printf/ft_printf.h"
+#include "minilibx-linux/mlx.h"
+#include <sys/time.h>

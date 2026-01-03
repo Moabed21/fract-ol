@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 16:07:52 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/02 20:58:13 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/03 12:50:04 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ typedef struct s_fractal
 
 //mandlebrot
 void	mandlebrot(t_complex z, t_complex c, int i);
-
+double scale(double unscaled, double new_min, double new_max, double old_min, double old_max);
 
 #endif

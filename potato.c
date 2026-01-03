@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 22:44:02 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/02 23:39:03 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/03 12:36:10 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,20 @@ void	fractal_init(t_fractal *fractal)
 		&fractal->img.bits_per_pixel, &fractal->img.line_length, &fractal->img.endian);
 }
 
-int	main(int ac, char **av)
-{
-	t_fractal fractal;
+// int	main(int ac, char **av)
+// {
+// 	t_fractal fractal;
 
-	if ((ac == 2 && !ft_strncmp(av[1], "mandlebrot", 10)) || (ac == 4
-			&& !ft_strncmp(av[1], "julia", 5)))
-	{
-		fractal.name = av[1];
-		fractal_init(&fractal);
-	}
-	else
-		ft_putstr_fd("Wrong inputs,try <mandlebrot>\n or \n<julia><real number> <imaginary number>",
-			2);
-}
+// 	if ((ac == 2 && !ft_strncmp(av[1], "mandlebrot", 10)) || (ac == 4
+// 			&& !ft_strncmp(av[1], "julia", 5)))
+// 	{
+// 		fractal.name = av[1];
+// 		fractal_init(&fractal);
+// 	}
+// 	else
+// 		ft_putstr_fd("Wrong inputs,try <mandlebrot>\n or \n<julia><real number> <imaginary number>",
+// 			2);
+// }
 // t_complex z;
 // t_complex c;
 

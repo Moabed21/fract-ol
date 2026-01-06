@@ -16,28 +16,30 @@ void	fractal_init(t_fractal *fractal)
 {
 	fractal->mlx_connection = mlx_init();
 	data_init(fractal);
-	if(fractal->mlx_connection == NULL)
+	if (fractal->mlx_connection == NULL)
 		malloc_fail();
-	fractal->mlx_window = mlx_new_window(fractal->mlx_connection, WIDTH, HEIGHT, fractal->name);	
-	if(fractal->mlx_window == NULL)
+	fractal->mlx_window = mlx_new_window(fractal->mlx_connection, WIDTH, HEIGHT,
+			fractal->name);
+	if (fractal->mlx_window == NULL)
 	{
 		mlx_destroy_display(fractal->mlx_connection);
 		free(fractal->mlx_connection);
 		malloc_fail();
 	}
 	fractal->img.img = mlx_new_image(fractal->mlx_connection, WIDTH, HEIGHT);
-	if(fractal->img.img == NULL)
+	if (fractal->img.img == NULL)
 	{
-		mlx_destroy_window(fractal->mlx_connection,fractal->mlx_window);
+		mlx_destroy_window(fractal->mlx_connection, fractal->mlx_window);
 		mlx_destroy_display(fractal->mlx_connection);
 		free(fractal->mlx_connection);
 		malloc_fail();
 	}
-	fractal->img.pixel_ptr=mlx_get_data_addr(fractal->img.img,
-		&fractal->img.bits_per_pixel, &fractal->img.line_length, &fractal->img.endian);
+	fractal->img.pixel_ptr = mlx_get_data_addr(fractal->img.img,
+			&fractal->img.bits_per_pixel, &fractal->img.line_length,
+			&fractal->img.endian);
 }
-void    data_init(t_fractal *fractal)
+void	data_init(t_fractal *fractal)
 {
-    fractal->escape_value= 3;
-    fractal->init_iteration = 1000;
+	fractal->escape_value = 3;
+	fractal->init_iteration = 1000;
 }

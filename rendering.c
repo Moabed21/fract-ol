@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 20:56:37 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/05 21:47:42 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/11 02:04:23 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,24 @@ static double	scale(double unscaled, double new_min, double new_max,
 {
 	return ((new_max - new_min) * (unscaled - old_min) / (old_max - old_min)
 		+ new_min);
+}
+
+int	get_psychedelic_color(int i, t_fractal *fractal)
+{
+	double t;
+    int r;
+    int g;
+    int b;
+
+    t = (double)i / (double)fractal->init_iteration;
+
+    r = (int)(9 *  t * t  * 255);
+    
+    g = (int)(15 *  t *  255);
+    
+    b = (int)(8.5 * t *t* 255);
+
+    return ((r << 16) | (g << 8) | b);
 }
 
 static void	pixel_handling(int x, int y, t_fractal *fractal)
@@ -30,23 +48,27 @@ static void	pixel_handling(int x, int y, t_fractal *fractal)
 	z.real = 0.0;
 	z.imaginary = 0.0;
 	// pixel coordinate real & imaginary to fit mandlebrot needs
-	c.real = scale(x, -2, 3, 0, WIDTH);
-	c.imaginary = scale(y, 2, -2, 0, HEIGHT);
+	c.real = scale(x, -2, 2, 100, WIDTH);
+	c.imaginary = scale(y, 2, -2, 100, HEIGHT);
 	while (i < fractal->init_iteration)
 	{
 		mandlebrot(&z, &c);
 		if ((z.real * z.real) + (z.imaginary
 				* z.imaginary) > fractal->escape_value)
 		{
-			color = scale(i, BLACK, WHITE, 0, fractal->init_iteration);
+			color = get_psychedelic_color(i, fractal);
 			my_mlx_pixel_put(&fractal->img, x, y, color);
 			return ;
 		}
 		i++;
 	}
-	my_mlx_pixel_put(&fractal->img, x, y, MAGENTA);
 }
-
+int	image_consistency(t_fractal *fractal)
+{
+	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window,
+		fractal->img.img, 0, 0);
+	return (0);
+}
 void	fractal_render(t_fractal *fractal)
 {
 	int x;

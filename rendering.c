@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 20:56:37 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/11 02:04:23 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/11 02:07:09 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,7 @@ static void	pixel_handling(int x, int y, t_fractal *fractal)
 		i++;
 	}
 }
-int	image_consistency(t_fractal *fractal)
-{
-	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window,
-		fractal->img.img, 0, 0);
-	return (0);
-}
+
 void	fractal_render(t_fractal *fractal)
 {
 	int x;

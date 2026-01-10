@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 19:41:03 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/05 19:41:55 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/11 01:58:20 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	fractal_init(t_fractal *fractal)
 			&fractal->img.bits_per_pixel, &fractal->img.line_length,
 			&fractal->img.endian);
 }
+
 void	data_init(t_fractal *fractal)
 {
-	fractal->escape_value = 3;
-	fractal->init_iteration = 1000;
+	fractal->escape_value = 100;
+	fractal->init_iteration = 300;
 }

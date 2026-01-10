@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 20:57:34 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/05 18:30:14 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/10 22:55:29 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	mandlebrot(t_complex *z, t_complex *c)
 {
-	double tmp_num;
+	double	tmp_num;
 
 	tmp_num = (z->real * z->real) - (z->imaginary * z->imaginary);
 	z->imaginary = 2 * z->real * z->imaginary;

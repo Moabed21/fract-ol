@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 22:44:02 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/05 20:10:50 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/10 22:57:26 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	main(int ac, char **av)
 		fractal.name = av[1];
 		fractal_init(&fractal);
 		fractal_render(&fractal);
-		mlx_loop(fractal.mlx_connection);
+		mlx(&fractal);
 	}
 	else
-		ft_putstr_fd("Wrong inputs,try <mandlebrot>\n or \n<julia><real number> <imaginary number>",
+		ft_putstr_fd("Wrong inputs,try mandlebrot or julia real imaginary",
 			2);
 }

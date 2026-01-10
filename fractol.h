@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 16:07:52 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/05 21:47:09 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/11 01:21:32 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
 # include <sys/time.h>
-# define WIDTH 1920
+# include <math.h>
+# define WIDTH 1080
 # define HEIGHT 1080
 // Primary Colors
 # define RED 0xFF0000   // Red is max, Green is 0, Blue is 0
@@ -52,7 +53,7 @@ typedef struct s_fractal
 	void	*mlx_connection;
 	void	*mlx_window;
 	t_image	img;
-	double	escape_value;
+	double	escape_value;// الوتر حسب نظرية فيثاغورس 
 	int		init_iteration;
 
 }			t_fractal;
@@ -65,6 +66,10 @@ void		data_init(t_fractal *fractal);
 // rendering and pixels operations
 void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
 void		fractal_render(t_fractal *fractal);
-
+// mlx_ops
+int		close_handler(t_fractal *fractal);
+int		image_consistency(t_fractal *fractal);
+void	mlx(t_fractal *fractal);
 void		malloc_fail(void);
+
 #endif

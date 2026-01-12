@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 20:56:37 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/11 02:07:09 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/12 16:34:53 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static double	scale(double unscaled, double new_min, double new_max,
 		+ new_min);
 }
 
-int	get_psychedelic_color(int i, t_fractal *fractal)
+static int	get_psychedelic_color(int i, t_fractal *fractal)
 {
 	double t;
     int r;
@@ -32,7 +32,7 @@ int	get_psychedelic_color(int i, t_fractal *fractal)
     
     g = (int)(15 *  t *  255);
     
-    b = (int)(8.5 * t *t* 255);
+    b = (int)(8.5 * t*  255);
 
     return ((r << 16) | (g << 8) | b);
 }
@@ -48,8 +48,8 @@ static void	pixel_handling(int x, int y, t_fractal *fractal)
 	z.real = 0.0;
 	z.imaginary = 0.0;
 	// pixel coordinate real & imaginary to fit mandlebrot needs
-	c.real = scale(x, -2, 2, 100, WIDTH);
-	c.imaginary = scale(y, 2, -2, 100, HEIGHT);
+	c.real = scale(x, -2, 2, 100, WIDTH) + fractal->real_shift;
+	c.imaginary = scale(y, 2, -2, 100, HEIGHT) + fractal->i_shift;
 	while (i < fractal->init_iteration)
 	{
 		mandlebrot(&z, &c);

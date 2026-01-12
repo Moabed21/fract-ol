@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 19:41:03 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/11 01:58:20 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/12 17:01:08 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,15 @@ void	data_init(t_fractal *fractal)
 {
 	fractal->escape_value = 100;
 	fractal->init_iteration = 300;
+	fractal->real_shift = 0;
+	fractal->i_shift = 0;
+	//zoom factor
+	fractal->zoom = 1.0;
+}
+
+void	events_init(t_fractal *fractal)
+{
+	mlx_hook(fractal->mlx_window,KeyPress,KeyPressMask,key_handler,fractal);
+	 mlx_hook(fractal->mlx_window,ButtonPress, ButtonPressMask, mouse_handler, fractal);
+	// mlx_hook(fractal->mlx_window,DestroyNotify,StructureNotifyMask,close_handler,fractal);
 }

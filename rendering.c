@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 20:56:37 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/14 12:34:57 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/14 17:58:08 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ static int	get_psychedelic_color(int i, t_fractal *fractal)
     int g;
     int b;
 
-	if (i == fractal->init_iteration)
-        return (0x000000);
     t = (double)i / (double)fractal->init_iteration;
 
     r = (int)(9 *  t * t  * 255);
@@ -49,10 +47,9 @@ static void	pixel_handling(int x, int y, t_fractal *fractal)
 	i = 0;
 	z.real = 0.0;
 	z.imaginary = 0.0;
-	// pixel coordinate real & imaginary to fit mandlebrot needs
-	c.real = scale(x, -2, 2, 100, WIDTH) * fractal->zoom;
-	c.imaginary = scale(y, 2, -2, 100, HEIGHT) * fractal->zoom;
-	while (i < fractal->init_iteration)
+	c.real = (scale(x, -2, 2, 0, WIDTH) * fractal->zoom);
+	c.imaginary = (scale(y, 2, -2, 0, HEIGHT) * fractal->zoom);
+	while (i <= fractal->init_iteration)
 	{
 		mandlebrot(&z, &c);
 		if ((z.real * z.real) + (z.imaginary
@@ -64,6 +61,7 @@ static void	pixel_handling(int x, int y, t_fractal *fractal)
 		}
 		i++;
 	}
+	my_mlx_pixel_put(&fractal->img, x, y, 0x000000);
 }
 
 void	fractal_render(t_fractal *fractal)

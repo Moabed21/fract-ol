@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 22:44:02 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/10 22:57:26 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/14 16:43:30 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,33 @@ int	main(int ac, char **av)
 	else
 		ft_putstr_fd("Wrong inputs,try mandlebrot or julia real imaginary",
 			2);
+}
+
+double	atodbl(char *num)
+{
+	long	intpart;
+	double	fracpart;
+	double	pow;
+	int 	sign;
+
+	intpart = 0;
+	fracpart = 0;
+	pow = 1;
+	sign = 1;
+	while ((*num >= 9 && *num <= 13) || *num == ' ')
+		num++;
+	if (*num == '-' || *num == '+')
+		if(*num++ == '-')
+			sign = sign * -1;
+	while (*num != '.' && *num)
+		intpart = (intpart * 10) + (*num++ -48);
+	if (*num == '.')
+		num++;
+	while (*num)
+	{
+		pow /= 10;
+		fracpart = fracpart + (*num++ - 48) * pow;
+	}
+	fracpart = (fracpart + intpart) * sign;
+	return(fracpart);
 }

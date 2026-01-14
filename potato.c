@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 22:44:02 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/14 16:43:30 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/15 01:38:12 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,17 @@ int	main(int ac, char **av)
 			&& !ft_strncmp(av[1], "julia", 5)))
 	{
 		fractal.name = av[1];
+		if ((ac == 4 && !ft_strncmp(av[1], "julia", 5)))
+		{
+			fractal.j_real = atodbl(av[2]);
+			fractal.j_imaginary = atodbl(av[3]);
+		}
 		fractal_init(&fractal);
 		fractal_render(&fractal);
 		mlx(&fractal);
 	}
 	else
-		ft_putstr_fd("Wrong inputs,try mandlebrot or julia real imaginary",
-			2);
+		ft_putstr_fd("Wrong inputs,try mandlebrot or julia real imaginary", 2);
 }
 
 double	atodbl(char *num)
@@ -49,7 +53,7 @@ double	atodbl(char *num)
 	long	intpart;
 	double	fracpart;
 	double	pow;
-	int 	sign;
+	int		sign;
 
 	intpart = 0;
 	fracpart = 0;
@@ -58,10 +62,10 @@ double	atodbl(char *num)
 	while ((*num >= 9 && *num <= 13) || *num == ' ')
 		num++;
 	if (*num == '-' || *num == '+')
-		if(*num++ == '-')
+		if (*num++ == '-')
 			sign = sign * -1;
 	while (*num != '.' && *num)
-		intpart = (intpart * 10) + (*num++ -48);
+		intpart = (intpart * 10) + (*num++ - 48);
 	if (*num == '.')
 		num++;
 	while (*num)
@@ -70,5 +74,5 @@ double	atodbl(char *num)
 		fracpart = fracpart + (*num++ - 48) * pow;
 	}
 	fracpart = (fracpart + intpart) * sign;
-	return(fracpart);
+	return (fracpart);
 }

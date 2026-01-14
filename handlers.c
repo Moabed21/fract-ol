@@ -12,16 +12,16 @@
 
 #include "fractol.h"
 
-int mouse_handler(int button, int x, int y, t_fractal *fractal)
+int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 {
 	(void)x;
 	(void)y;
-    if (button == Button4)
-        fractal->zoom *= 0.95; 
+	if (button == Button4)
+		fractal->zoom *= 0.95;
 	else if (button == Button5)
-        fractal->zoom *= 1.05;
-    fractal_render(fractal);
-    return (0);
+		fractal->zoom *= 1.05;
+	fractal_render(fractal);
+	return (0);
 }
 int	image_handler(t_fractal *fractal)
 {
@@ -37,12 +37,12 @@ int	key_handler(int key, t_fractal *fractal)
 	if (key == Button5)
 	{
 		fractal->zoom *= 0.95;
-		fractal_render (fractal);
+		fractal_render(fractal);
 	}
 	else if (key == Button4)
 	{
 		fractal->zoom *= 1.05;
-		fractal_render (fractal);
+		fractal_render(fractal);
 	}
 	return (0);
 }
@@ -59,10 +59,10 @@ int	close_handler(t_fractal *fractal)
 
 void	mlx(t_fractal *fractal)
 {
-	mlx_hook(fractal->mlx_window, ButtonPress,
-		ButtonPressMask, mouse_handler, fractal);
-	mlx_hook(fractal->mlx_window, DestroyNotify,
-		StructureNotifyMask, close_handler, fractal);
+	mlx_hook(fractal->mlx_window, ButtonPress, ButtonPressMask, mouse_handler,
+		fractal);
+	mlx_hook(fractal->mlx_window, DestroyNotify, StructureNotifyMask,
+		close_handler, fractal);
 	mlx_hook(fractal->mlx_window, KeyPress, KeyPressMask, key_handler, fractal);
 	mlx_loop_hook(fractal->mlx_connection, image_handler, fractal);
 	mlx_loop(fractal->mlx_connection);

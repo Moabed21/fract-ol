@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 16:07:52 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/14 17:55:08 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/15 02:06:14 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include "minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
-# include <sys/time.h>
 # include <math.h>
+# include <sys/time.h>
 # define WIDTH 1080
 # define HEIGHT 1080
 
@@ -40,13 +40,15 @@ typedef struct s_complex
 
 typedef struct s_fractal
 {
-	char		*name;
-	int			init_iteration;
-	void		*mlx_connection;
-	void		*mlx_window;
-	double		escape_value;// الوتر حسب نظرية فيثاغورس 
-	double		zoom;
-	t_image		img;
+	char	*name;
+	int		init_iteration;
+	void	*mlx_connection;
+	void	*mlx_window;
+	double	escape_value;
+	double	zoom;
+	double	j_real;
+	double	j_imaginary;
+	t_image	img;
 
 }			t_fractal;
 
@@ -60,7 +62,7 @@ void		malloc_fail(void);
 int			image_handler(t_fractal *fractal);
 int			key_handler(int key, t_fractal *fractal);
 int			close_handler(t_fractal *fractal);
-int			mouse_handler(int button,int x,int y ,t_fractal *fractal);
+int			mouse_handler(int button, int x, int y, t_fractal *fractal);
 double		atodbl(char *num);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 20:56:37 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/14 17:58:08 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/15 02:25:45 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,27 @@ static double	scale(double unscaled, double new_min, double new_max,
 
 static int	get_psychedelic_color(int i, t_fractal *fractal)
 {
-	double t;
-    int r;
-    int g;
-    int b;
+	double	t;
+	int		r;
+	int		g;
+	int		b;
 
-    t = (double)i / (double)fractal->init_iteration;
+	t = (double)i / (double)fractal->init_iteration;
+	r = (int)(5 * t  * 20);
+	g = (int)(10 * t * 40);
+	b = (int)(25 * t * 80);
+	return ((r << 16) | (g << 8) | b);
+}
 
-    r = (int)(9 *  t * t  * 255);
-    
-    g = (int)(15 *  t *  255);
-    
-    b = (int)(8.5 * t*  255);
-
-    return ((r << 16) | (g << 8) | b);
+void	julia(t_complex *z, t_complex *c, t_fractal *fractal)
+{
+	if (!ft_strncmp(fractal->name, "julia", 5))
+	{
+		z->real = c->real;
+		z->imaginary = c->imaginary;
+		c->real = fractal->j_real;
+		c->imaginary = fractal->j_imaginary;
+	}
 }
 
 static void	pixel_handling(int x, int y, t_fractal *fractal)
@@ -45,10 +52,11 @@ static void	pixel_handling(int x, int y, t_fractal *fractal)
 	int			color;
 
 	i = 0;
-	z.real = 0.0;
-	z.imaginary = 0.0;
+	z.real = 0.743643887037151;
+	z.imaginary = 0.131825904205330;
 	c.real = (scale(x, -2, 2, 0, WIDTH) * fractal->zoom);
 	c.imaginary = (scale(y, 2, -2, 0, HEIGHT) * fractal->zoom);
+	julia(&z, &c, fractal);
 	while (i <= fractal->init_iteration)
 	{
 		mandlebrot(&z, &c);
@@ -66,8 +74,8 @@ static void	pixel_handling(int x, int y, t_fractal *fractal)
 
 void	fractal_render(t_fractal *fractal)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < HEIGHT)

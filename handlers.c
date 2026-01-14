@@ -6,11 +6,46 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 23:50:57 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/14 12:27:03 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/14 17:55:49 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+int mouse_handler(int button, int x, int y, t_fractal *fractal)
+{
+	(void)x;
+	(void)y;
+    if (button == Button4)
+        fractal->zoom *= 0.95; 
+	else if (button == Button5)
+        fractal->zoom *= 1.05;
+    fractal_render(fractal);
+    return (0);
+}
+int	image_handler(t_fractal *fractal)
+{
+	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window,
+		fractal->img.img, 0, 0);
+	return (0);
+}
+
+int	key_handler(int key, t_fractal *fractal)
+{
+	if (key == XK_Escape)
+		close_handler(fractal);
+	if (key == Button5)
+	{
+		fractal->zoom *= 0.95;
+		fractal_render (fractal);
+	}
+	else if (key == Button4)
+	{
+		fractal->zoom *= 1.05;
+		fractal_render (fractal);
+	}
+	return (0);
+}
 
 int	close_handler(t_fractal *fractal)
 {
@@ -19,53 +54,16 @@ int	close_handler(t_fractal *fractal)
 	mlx_destroy_display(fractal->mlx_connection);
 	free(fractal->mlx_connection);
 	exit(0);
-	return(0);
-}
-
-int		key_handler(int key, t_fractal *fractal)
-{
-	if(key == XK_Escape)
-		close_handler(fractal);
-	// else if(key == XK_Left)
-	// 	fractal->real_shift += 0.5;
-	// else if(key == XK_Right)
-	// 	fractal->real_shift -= 0.5;
-	// else if(key == XK_Up)
-	// 	fractal->i_shift += 0.5;
-	// else if(key == XK_Down)
-	// 	fractal->i_shift -= 0.5;
-	// else if(key == XK_plus || key == XK_equal || key == XK_KP_Add)
-	// 	fractal->init_iteration +=10;
-	// else if(key == XK_minus)
-	// 	fractal->init_iteration -=10;
-	// fractal_render(fractal);
-	// mlx_hook(fractal->mlx_window, DestroyNotify, StructureNotifyMask, close_handler, fractal);
-	return(0);
-}
-
-int	image_handler(t_fractal *fractal)
-{
-	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window,
-		fractal->img.img, 0, 0);
 	return (0);
 }
-int		mouse_handler(int button, int x, int y, t_fractal *fractal)
-{
-	if(button == Button5)
-	{
-		fractal->zoom *= 0.95;
-	}
-	else if(button == Button4)
-	{
-		fractal->zoom *= 1.05;
-	}
-	fractal_render(fractal);
-	return(0);
-}
+
 void	mlx(t_fractal *fractal)
 {
-	events_init(fractal);
-	//mlx_hook(fractal->mlx_window, DestroyNotify, StructureNotifyMask, close_handler, fractal);
+	mlx_hook(fractal->mlx_window, ButtonPress,
+		ButtonPressMask, mouse_handler, fractal);
+	mlx_hook(fractal->mlx_window, DestroyNotify,
+		StructureNotifyMask, close_handler, fractal);
+	mlx_hook(fractal->mlx_window, KeyPress, KeyPressMask, key_handler, fractal);
 	mlx_loop_hook(fractal->mlx_connection, image_handler, fractal);
 	mlx_loop(fractal->mlx_connection);
 }

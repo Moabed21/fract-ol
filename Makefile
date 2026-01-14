@@ -1,6 +1,6 @@
 NAME = fractol
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = #-Wall -Wextra -Werror
 PFLAGS = -Lminilibx-linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 SRC = potato.c rendering.c mandlebrot.c init.c handlers.c
 OBJ = $(SRC:.c=.o)
@@ -14,7 +14,7 @@ all	:	$(LIBS) $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
-$(NAME): $(OBJ) $(LIBS)
+$(NAME): $(OBJ) $(LIBS) fractol.h
 	$(CC) $(CFLAGS) $(PFLAGS) $(SRC) $(LIBS) -o $(NAME)
 
 $(LIBS):

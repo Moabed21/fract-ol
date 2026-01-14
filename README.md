@@ -36,3 +36,5 @@ A program designed to render two complex numbers equations, which are Julia and 
 init_iteration: which determines the number of iterations to test the numbers until it explodes or not, if its assigned to a small number the image shows quickly and its not accurate at all(filled with an exploded numbers but the samll number of test identified the as an non exploded).
 
 escape_value: 
+
+1-

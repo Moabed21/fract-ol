@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 23:50:57 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/12 16:59:05 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/14 12:27:03 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,19 @@ int		mouse_handler(int button, int x, int y, t_fractal *fractal)
 {
 	if(button == Button5)
 	{
-		
+		fractal->zoom *= 0.95;
 	}
-	if(button == Button5)
+	else if(button == Button4)
 	{
-		
+		fractal->zoom *= 1.05;
 	}
-	
+	fractal_render(fractal);
+	return(0);
 }
 void	mlx(t_fractal *fractal)
 {
 	events_init(fractal);
-	mlx_hook(fractal->mlx_window, DestroyNotify, StructureNotifyMask, close_handler, fractal);
+	//mlx_hook(fractal->mlx_window, DestroyNotify, StructureNotifyMask, close_handler, fractal);
 	mlx_loop_hook(fractal->mlx_connection, image_handler, fractal);
 	mlx_loop(fractal->mlx_connection);
 }

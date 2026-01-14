@@ -1,40 +1,26 @@
-## Fract-ol
+*This project has been created as part of the 42 curriculum by moabed*
+## Description
 
-A program designed to render two complex numbers equations, which are Julia and Mandlebrot
+A program designed to render two complex numbers equations, which are Julia and Mandlebrot sets , using minilibx library.
 
-## Code Structure
+## Instructions
 
-.
-└── main()                          # Entry point
-    ├── fractal_init()              # Setup MLX connection, Window, Image & Data
-    │   ├── mlx_init()
-    │   ├── mlx_new_window()
-    │   ├── mlx_new_image()
-    │   └── data_init()             # Set default zoom, colors, iter
-    │
-    ├── fractal_render()            # The infinite graphics loop
-    │   ├── mlx_clear_window()      # (Optional) specific cleanup
-    │   └── y/x loop (0 to WIDTH/HEIGHT)
-    │       └── pixel_handling()    # Core logic per pixel
-    │           ├── scale()         # Map screen coord to math coord
-    │           ├── mandelbrot()    # Z = Z^2 + C logic
-    │           ├── julia()         # Z = Z^2 + C (constant C)
-    │           └── my_mlx_pixel_put() # Draw pixel to image buffer
-    │   └── mlx_put_image_to_window() # Push buffer to screen
-    │
-    ├── mlx_loop()                  # Keep window open & listen to events
-    │   ├── key_handler()           # ESC to close, Arrows to move
-    │   ├── mouse_handler()         # Scroll to Zoom In/Out
-    │   └── close_handler()         # Clean exit (free memory)
-    │
-    └── clean_exit()                # Free MLX ptrs & destroy window
+On the same project repository, open the terminal and prompt
 
-## Notes
+- make
 
-- in data_init() function initialization is done to :
+Then to test if mandlebrot set works prompt
 
-init_iteration: which determines the number of iterations to test the numbers until it explodes or not, if its assigned to a small number the image shows quickly and its not accurate at all(filled with an exploded numbers but the samll number of test identified the as an non exploded).
+- ./fractol mandlebrot
 
-escape_value: 
+Or if you choose to test julia
 
-1-
+- ./fractol julia <real> <imaginary>
+
+## Resources
+
+1) fractol: render beautiful fractals in C (mandelbrot and julia set): https://youtu.be/ANLW1zYbLcs?si=Z_muin9mc6VFOOHg
+
+2) Full guide to MiniLibX: https://harm-smits.github.io/42docs/libsminilibx/introduction.html
+
+3) Mandlebrot Evil Twin: https://youtu.be/Ed1gsyxxwM0?si=0RRDOWV5eYrEr-Tu

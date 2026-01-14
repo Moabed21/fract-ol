@@ -1,8 +1,8 @@
 NAME = fractol
 CC = cc
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 PFLAGS = -Lminilibx-linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-SRC = potato.c rendering.c mandlebrot.c init.c handlers.c
+SRC = potato.c rendering.c equations.c init.c handlers.c
 OBJ = $(SRC:.c=.o)
 RM = rm -f
 LIBS = ft_printf/libftprintf.a \

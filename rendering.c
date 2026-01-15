@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 20:56:37 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/15 02:25:45 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/15 07:09:54 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static void	pixel_handling(int x, int y, t_fractal *fractal)
 	int			color;
 
 	i = 0;
-	z.real = 0.743643887037151;
-	z.imaginary = 0.131825904205330;
+	z.real = 0;
+	z.imaginary = 0;
 	c.real = (scale(x, -2, 2, 0, WIDTH) * fractal->zoom);
 	c.imaginary = (scale(y, 2, -2, 0, HEIGHT) * fractal->zoom);
 	julia(&z, &c, fractal);

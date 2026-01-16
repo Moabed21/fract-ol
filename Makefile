@@ -1,36 +1,31 @@
-NAME = fractol
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
-PFLAGS = -Lminilibx-linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-SRC = potato.c rendering.c equations.c init.c handlers.c
-OBJ = $(SRC:.c=.o)
-RM = rm -f
-LIBS = ft_printf/libftprintf.a \
-	libft/libft.a \
-	minilibx-linux/libmlx_Linux.a \
-	minilibx-linux/libmlx.a
-all	:	$(LIBS) $(NAME)
+NAME    = fractol
+CC      = cc
+CFLAGS  = -Wall -Wextra -Werror -O3
+INCLUDES = -Imlx_linux
+MLX_FLAGS = -Lminilibx-linux -lmlx_Linux -lXext -lX11
+SRC     = potato.c rendering.c equations.c handlers.c
+OBJ     = $(SRC:.c=.o)
+RM      = rm -f
+LIBS    = libft/libft.a minilibx-linux/libmlx_Linux.a
+all: $(LIBS) $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(NAME): $(OBJ) $(LIBS) fractol.h
-	$(CC) $(CFLAGS) $(PFLAGS) $(SRC) $(LIBS) -o $(NAME)
+$(NAME): $(OBJ) $(LIBS)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(MLX_FLAGS) -o $(NAME)
 
 $(LIBS):
-	make -C ft_printf
 	make -C libft
 	make -C minilibx-linux
 
 clean:
 	$(RM) $(OBJ)
-	make -C ft_printf clean
 	make -C libft clean
 	make -C minilibx-linux clean
 
-fclean : clean
+fclean: clean
 	$(RM) $(NAME)
-	make -C ft_printf fclean
 	make -C libft fclean
 	make -C minilibx-linux clean
 

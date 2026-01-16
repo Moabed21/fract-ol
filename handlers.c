@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
+/*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 23:50:57 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/14 17:55:49 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/17 00:31:11 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 	fractal_render(fractal);
 	return (0);
 }
+
 int	image_handler(t_fractal *fractal)
 {
 	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window,

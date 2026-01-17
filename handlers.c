@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 23:50:57 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/17 00:31:11 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/17 16:56:39 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	close_handler(t_fractal *fractal)
 
 void	mlx(t_fractal *fractal)
 {
+	fractal_init(fractal);
+	fractal_render(fractal);
 	mlx_hook(fractal->mlx_window, ButtonPress, ButtonPressMask, mouse_handler,
 		fractal);
 	mlx_hook(fractal->mlx_window, DestroyNotify, StructureNotifyMask,

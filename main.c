@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   potato.c                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 22:44:02 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/15 01:38:12 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/17 17:36:08 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,35 @@ void	malloc_fail(void)
 	exit(EXIT_FAILURE);
 }
 
-int	main(int ac, char **av)
+static int	valid(char *s)
 {
-	t_fractal	fractal;
+	int	dots;
+	int	has_digit;
 
-	if ((ac == 2 && !ft_strncmp(av[1], "mandlebrot", 10)) || (ac == 4
-			&& !ft_strncmp(av[1], "julia", 5)))
+	dots = 0;
+	has_digit = 0;
+	while (*s == ' ' || (*s >= 9 && *s <= 13))
+		s++;
+	if (*s == '+' || *s == '-')
+		s++;
+	while (*s)
 	{
-		fractal.name = av[1];
-		if ((ac == 4 && !ft_strncmp(av[1], "julia", 5)))
+		if (ft_isdigit(*s))
+			has_digit = 1;
+		else if (*s == '.')
 		{
-			fractal.j_real = atodbl(av[2]);
-			fractal.j_imaginary = atodbl(av[3]);
+			if (dots > 0)
+				return (0);
+			dots++;
 		}
-		fractal_init(&fractal);
-		fractal_render(&fractal);
-		mlx(&fractal);
+		else
+			return (0);
+		s++;
 	}
-	else
-		ft_putstr_fd("Wrong inputs,try mandlebrot or julia real imaginary", 2);
+	return (has_digit);
 }
 
-double	atodbl(char *num)
+static double	dbl(char *num)
 {
 	long	intpart;
 	double	fracpart;
@@ -75,4 +82,33 @@ double	atodbl(char *num)
 	}
 	fracpart = (fracpart + intpart) * sign;
 	return (fracpart);
+}
+
+int	main(int ac, char **av)
+{
+	t_fractal	fractal;
+
+	if ((ac == 2 && !ft_strncmp(av[1], "mandlebrot", 10)) || (ac == 4
+			&& !ft_strncmp(av[1], "julia", 5)))
+	{
+		fractal.name = av[1];
+		if ((ac == 4 && !ft_strncmp(av[1], "julia", 5)))
+		{
+			if ((valid(av[2]) && (dbl(av[2]) <= 2 && dbl(av[2]) >= -2))
+				&& (valid(av[3]) && (dbl(av[3]) <= 2 && dbl(av[3]) >= -2)))
+			{
+				fractal.j_real = dbl(av[2]);
+				fractal.j_imaginary = dbl(av[3]);
+			}
+			else
+			{
+				write(2, "Wrong inputs\n", 14);
+				exit(EXIT_FAILURE);
+			}
+		}
+		mlx(&fractal);
+	}
+	else
+		ft_putstr_fd("Wrong inputs,try mandlebrot or julia real imaginary", 2);
+	return (EXIT_FAILURE);
 }

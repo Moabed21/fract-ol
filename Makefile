@@ -3,7 +3,7 @@ CC      = cc
 CFLAGS  = -Wall -Wextra -Werror -O3
 INCLUDES = -Imlx_linux
 MLX_FLAGS = -Lminilibx-linux -lmlx_Linux -lXext -lX11
-SRC     = potato.c rendering.c equations.c handlers.c
+SRC     = main.c rendering.c equations.c handlers.c
 OBJ     = $(SRC:.c=.o)
 RM      = rm -f
 LIBS    = libft/libft.a minilibx-linux/libmlx_Linux.a

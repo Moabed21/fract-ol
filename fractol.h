@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 16:07:52 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/17 01:38:07 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/17 17:34:51 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "ft_printf/ft_printf.h"
+#include <stdio.h>
 # include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
 # include <X11/X.h>
@@ -63,7 +63,6 @@ int			key_handler(int key, t_fractal *fractal);
 int			close_handler(t_fractal *fractal);
 int			mouse_handler(int button, int x, int y, t_fractal *fractal);
 int			get_psychedelic_color(int i, t_fractal *fractal);
-double		atodbl(char *num);
 double		scale(double unscaled, double new_min, double new_max,
 				double old_max);
 #endif

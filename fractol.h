@@ -6,18 +6,18 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 16:07:52 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/17 17:34:51 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/17 17:42:56 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-#include <stdio.h>
 # include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <stdio.h>
 # include <sys/time.h>
 # define WIDTH 1080
 # define HEIGHT 1080
@@ -51,7 +51,7 @@ typedef struct s_fractal
 
 }			t_fractal;
 
-void		mandlebrot(t_complex *z, t_complex *c);
+void		mandelbrot(t_complex *z, t_complex *c);
 void		fractal_init(t_fractal *fractal);
 void		data_init(t_fractal *fractal);
 void		my_mlx_pixel_put(t_image *data, int x, int y, int color);

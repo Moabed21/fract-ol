@@ -6,7 +6,7 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 22:44:02 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/17 17:36:08 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/17 17:44:38 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ int	main(int ac, char **av)
 {
 	t_fractal	fractal;
 
-	if ((ac == 2 && !ft_strncmp(av[1], "mandlebrot", 10)) || (ac == 4
-			&& !ft_strncmp(av[1], "julia", 5)))
+	if ((ac == 2 && !ft_strncmp(av[1], "Mandelbrot", 10)) || (ac == 4
+			&& !ft_strncmp(av[1], "Julia", 5)))
 	{
 		fractal.name = av[1];
-		if ((ac == 4 && !ft_strncmp(av[1], "julia", 5)))
+		if ((ac == 4 && !ft_strncmp(av[1], "Julia", 5)))
 		{
 			if ((valid(av[2]) && (dbl(av[2]) <= 2 && dbl(av[2]) >= -2))
 				&& (valid(av[3]) && (dbl(av[3]) <= 2 && dbl(av[3]) >= -2)))
@@ -109,6 +109,6 @@ int	main(int ac, char **av)
 		mlx(&fractal);
 	}
 	else
-		ft_putstr_fd("Wrong inputs,try mandlebrot or julia real imaginary", 2);
-	return (EXIT_FAILURE);
+		ft_putstr_fd("Wrong inputs,try Mandelbrot or Julia real imaginary", 2);
+	return (0);
 }

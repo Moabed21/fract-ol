@@ -6,13 +6,13 @@
 /*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 20:57:34 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/17 17:24:23 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/17 17:42:50 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	mandlebrot(t_complex *z, t_complex *c)
+void	mandelbrot(t_complex *z, t_complex *c)
 {
 	double	tmp_num;
 

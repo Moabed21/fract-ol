@@ -33,4 +33,3 @@ Or if you choose to test julia set
 ## AI Usage
 
 In this project, AI was used wisely in error handling to check every case of failure, beside finding the optimal color equations to paint the sets , also explained for me the scaling method.
-

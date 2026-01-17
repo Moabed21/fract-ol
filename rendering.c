@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
+/*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/02 20:56:37 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/17 01:23:08 by moabed           ###   ########.fr       */
+/*   Updated: 2026/01/17 18:08:20 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	julia(t_complex *z, t_complex *c, t_fractal *fractal)
 {
-	if (!ft_strncmp(fractal->name, "julia", 5))
+	if (!ft_strncmp(fractal->name, "Julia", 5))
 	{
 		z->real = c->real;
 		z->imaginary = c->imaginary;
@@ -38,7 +38,7 @@ static void	pixel_handling(int x, int y, t_fractal *fractal)
 	julia(&z, &c, fractal);
 	while (i < fractal->init_iteration)
 	{
-		mandlebrot(&z, &c);
+		mandelbrot(&z, &c);
 		if ((z.real * z.real) + (z.imaginary
 				* z.imaginary) > fractal->escape_value)
 		{

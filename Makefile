@@ -12,7 +12,7 @@ all: $(LIBS) $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(NAME): $(OBJ) $(LIBS)
+$(NAME): $(OBJ) $(LIBS) fractol.h
 	$(CC) $(CFLAGS) $(OBJ) $(LIBS) $(MLX_FLAGS) -o $(NAME)
 
 $(LIBS):
@@ -27,7 +27,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 	make -C libft fclean
-	make -C minilibx-linux clean
 
 re: fclean all
 

@@ -91,7 +91,7 @@ In this project, AI was used wisely in error handling to check every case of fai
     <td align="center">
       <img src="src/rose.png" width="300" height = "300">
       <br />
-      <b>Fire</b>
+      <b>Vein</b>
     </td>
   </tr>
 </table>

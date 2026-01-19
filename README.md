@@ -33,3 +33,65 @@ Or if you choose to test julia set
 ## AI Usage
 
 In this project, AI was used wisely in error handling to check every case of failure, beside finding the optimal color equations to paint the sets , also explained for me the scaling method.
+
+<p align="center">
+  <img src="src/purple_mandlebrot.png" width="550" title="Final Result">
+</p>
+<p align="center"><i>Final result to Mandlebrot in purple</i></p>
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="src/fire_mandlebrot.png" width="300" height = "300">
+      <br />
+      <b>Fire Orange</b>
+    </td>
+    <td align="center">
+      <img src="src/cyan_mandlebrot.png" width="300" height = "300">
+      <br />
+      <b>Cyan</b>
+    </td>
+    <td align="center">
+      <img src="src/gold_purple_mandelbrot.png" width="300" height = "300">
+      <br />
+      <b>Fire Orange</b>
+    </td>
+    <td align = "center">
+    <img src = "src/yellow_mandelbrot.png" width="300" height = "300">
+      <br />
+      <b>Yellow</b>
+    </td>
+    
+    
+  </tr>
+</table>
+
+<p align="center">
+  <img src="src/ice_julia.png" width="550" hight ="550" title="Final Result">
+</p>
+<p align="center"><i>Final result in Julia</i></p>
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="src/Julia.png" width="300" height = "300">
+      <br />
+      <b>Fire Orange</b>
+    </td>
+    <td align="center">
+      <img src="src/red_rose_julia.png" width="300" height = "300">
+      <br />
+      <b>Red Rose</b>
+    </td>
+    <td align="center">
+      <img src="src/fire_julia.png" width="300" height = "300">
+      <br />
+      <b>Fire</b>
+    </td>
+    <td align="center">
+      <img src="src/rose.png" width="300" height = "300">
+      <br />
+      <b>Fire</b>
+    </td>
+  </tr>
+</table>

@@ -76,7 +76,7 @@ In this project, AI was used wisely in error handling to check every case of fai
     <td align="center">
       <img src="src/Julia.png" width="300" height = "300">
       <br />
-      <b>Fire Orange</b>
+      <b>ٌRose Void</b>
     </td>
     <td align="center">
       <img src="src/red_rose_julia.png" width="300" height = "300">

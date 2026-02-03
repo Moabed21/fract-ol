@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
+/*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/17 22:44:02 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/17 17:44:38 by moabed           ###   ########.fr       */
+/*   Updated: 2026/02/04 00:27:21 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	my_mlx_pixel_put(t_image *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->pixel_ptr + (y * data->line_length + x * (data->bits_per_pixel
-				/ 8));
-	*(unsigned int *)dst = color;
-}
-
-void	malloc_fail(void)
-{
-	perror("Error allocating memory\n");
-	exit(EXIT_FAILURE);
-}
 
 static int	valid(char *s)
 {
@@ -84,31 +69,49 @@ static double	dbl(char *num)
 	return (fracpart);
 }
 
+void	mprocessing(char **av, t_fractal *fractal)
+{
+	fractal->name = av[1];
+	fractal->type = 1;
+	mlx(fractal);
+}
+
+void	jprocessing(char **av, t_fractal *fractal)
+{
+	int		v1;
+	int		v2;
+	double	arg2;
+	double	arg3;
+
+	v1 = valid(av[2]);
+	v2 = valid(av[3]);
+	arg2 = dbl(av[2]);
+	arg3 = dbl(av[3]);
+	fractal->type = 2;
+	fractal->name = av[1];
+	if ((v1 && (arg2 <= 2 && arg2 >= -2)) || (v2 && (arg3 <= 2 && arg3 >= -2)))
+	{
+		fractal->j.real = dbl(av[2]);
+		fractal->j.imaginary = dbl(av[3]);
+	}
+	else
+	{
+		write(2, "Wrong inputs\n", 14);
+		exit(EXIT_FAILURE);
+	}
+	mlx(fractal);
+}
+
 int	main(int ac, char **av)
 {
 	t_fractal	fractal;
 
-	if ((ac == 2 && !ft_strncmp(av[1], "Mandelbrot", 10)) || (ac == 4
-			&& !ft_strncmp(av[1], "Julia", 5)))
-	{
-		fractal.name = av[1];
-		if ((ac == 4 && !ft_strncmp(av[1], "Julia", 5)))
-		{
-			if ((valid(av[2]) && (dbl(av[2]) <= 2 && dbl(av[2]) >= -2))
-				&& (valid(av[3]) && (dbl(av[3]) <= 2 && dbl(av[3]) >= -2)))
-			{
-				fractal.j_real = dbl(av[2]);
-				fractal.j_imaginary = dbl(av[3]);
-			}
-			else
-			{
-				write(2, "Wrong inputs\n", 14);
-				exit(EXIT_FAILURE);
-			}
-		}
-		mlx(&fractal);
-	}
+	if (ac == 2 && !ft_strncmp(av[1], "Mandelbrot", 10))
+		mprocessing(av, &fractal);
+	else if ((ac == 4 && !ft_strncmp(av[1], "Julia", 5)))
+		jprocessing(av, &fractal);
 	else
-		ft_putstr_fd("Wrong inputs,try Mandelbrot or Julia real imaginary", 2);
+		ft_putstr_fd("Bad inputs,try Mandelbrot or Julia <real> <imaginary>",
+			2);
 	return (0);
 }

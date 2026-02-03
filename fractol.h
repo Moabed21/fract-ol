@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moabed <moabed@student.42amman.com>        +#+  +:+       +#+        */
+/*   By: moabed <moabed@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 16:07:52 by moabed            #+#    #+#             */
-/*   Updated: 2026/01/17 17:42:56 by moabed           ###   ########.fr       */
+/*   Updated: 2026/02/03 23:31:21 by moabed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,45 +24,43 @@
 
 typedef struct s_image
 {
-	void	*img;
-	char	*pixel_ptr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_image;
+	void		*img;
+	char		*pixel_ptr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_image;
 
 typedef struct s_complex
 {
-	double	real;
-	double	imaginary;
-}			t_complex;
+	double		real;
+	double		imaginary;
+}				t_complex;
 
 typedef struct s_fractal
 {
-	char	*name;
-	int		init_iteration;
-	void	*mlx_connection;
-	void	*mlx_window;
-	double	escape_value;
-	double	zoom;
-	double	j_real;
-	double	j_imaginary;
-	t_image	img;
+	char		*name;
+	int			type;
+	int			init_iteration;
+	void		*mlx_connection;
+	void		*mlx_window;
+	double		escape_value;
+	double		zoom;
+	t_complex	j;
+	t_image		img;
+}				t_fractal;
 
-}			t_fractal;
-
-void		mandelbrot(t_complex *z, t_complex *c);
-void		fractal_init(t_fractal *fractal);
-void		data_init(t_fractal *fractal);
-void		my_mlx_pixel_put(t_image *data, int x, int y, int color);
-void		fractal_render(t_fractal *fractal);
-void		mlx(t_fractal *fractal);
-void		malloc_fail(void);
-int			image_handler(t_fractal *fractal);
-int			key_handler(int key, t_fractal *fractal);
-int			close_handler(t_fractal *fractal);
-int			mouse_handler(int button, int x, int y, t_fractal *fractal);
-int			get_psychedelic_color(int i, t_fractal *fractal);
-double		scale(double unscaled, double new_min, double new_max,
-				double old_max);
+void			fractal_init(t_fractal *fractal);
+void			data_init(t_fractal *fractal);
+void			my_mlx_pixel_put(t_image *data, int x, int y, int color);
+void			fractal_render(t_fractal *fractal);
+void			mlx(t_fractal *fractal);
+void			error(void);
+int				image_handler(t_fractal *fractal);
+int				key_handler(int key, t_fractal *fractal);
+int				close_handler(t_fractal *fractal);
+int				mouse_handler(int button, int x, int y, t_fractal *fractal);
+int				color_fun(int i, t_fractal *fractal);
+double			scale(double unscaled, double new_min, double new_max,
+					double old_max);
 #endif
